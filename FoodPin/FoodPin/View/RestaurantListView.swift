@@ -33,39 +33,48 @@ struct RestaurantListView: View {
     ]
     
     var body: some View {
-        List {
-            ForEach(restaurants.indices, id: \.self) { index in
-                BasicTextImageRow(restaurant: $restaurants[index])
-                    .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
-                        
-                        Button{
-                            
-                        }label: {
-                            Image(systemName: "heart")
-                        }
-                        .tint(.green)
-                        
-                        Button{
-                            
-                            
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        .tint(.orange)
-                        
-                        
-                    })
-            }
-            .onDelete(perform: { IndexSet in
-                restaurants.remove(atOffsets: IndexSet)
+        NavigationView {
+            List {
+                ForEach(restaurants.indices, id: \.self) { index in
+                    
+                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])) {
+                        BasicTextImageRow(restaurant: $restaurants[index])
+                            .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
+                                
+                                Button{
+                                    
+                                }label: {
+                                    Image(systemName: "heart")
+                                }
+                                .tint(.green)
+                                
+                                Button{
+                                    
+                                    
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                                .tint(.orange)
+                                
+                                
+                            })
+                    }}
+                .onDelete(perform: { IndexSet in
+                    restaurants.remove(atOffsets: IndexSet)
+                    
+                })
                 
-            })
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
             
-            .listRowSeparator(.hidden)
+            .navigationTitle("FoodPin")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .listStyle(.plain)
+        .accentColor(.white)
         
     }
+    
 }
 
 // MARK: - BasicTextImageRow
