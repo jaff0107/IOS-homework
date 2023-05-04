@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct RestaurantDetailView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
     var restaurant: Restaurant
     
     var body: some View {

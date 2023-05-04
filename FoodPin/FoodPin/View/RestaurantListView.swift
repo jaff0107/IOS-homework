@@ -37,28 +37,35 @@ struct RestaurantListView: View {
             List {
                 ForEach(restaurants.indices, id: \.self) { index in
                     
-                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])) {
-                        BasicTextImageRow(restaurant: $restaurants[index])
-                            .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
-                                
-                                Button{
+                    ZStack(alignment: .leading) {
+                        NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])){
+                            EmptyView()
+                        }
+                        .opacity(0)
+                    }
+                        
+                         {
+                            BasicTextImageRow(restaurant: $restaurants[index])
+                                .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
                                     
-                                }label: {
-                                    Image(systemName: "heart")
-                                }
-                                .tint(.green)
-                                
-                                Button{
+                                    Button{
+                                        
+                                    }label: {
+                                        Image(systemName: "heart")
+                                    }
+                                    .tint(.green)
+                                    
+                                    Button{
+                                        
+                                        
+                                    } label: {
+                                        Image(systemName: "square.and.arrow.up")
+                                    }
+                                    .tint(.orange)
                                     
                                     
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up")
-                                }
-                                .tint(.orange)
-                                
-                                
-                            })
-                    }}
+                                })
+                        }}
                 .onDelete(perform: { IndexSet in
                     restaurants.remove(atOffsets: IndexSet)
                     
