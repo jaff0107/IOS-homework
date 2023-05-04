@@ -2,7 +2,7 @@
 //  ActivityView.swift
 //  FoodPin
 //
-//  Created by Jeff Chiu on 2023/4/20.
+//  Created by Simon Ng on 27/9/2021.
 //
 
 import SwiftUI
@@ -20,6 +20,4 @@ struct ActivityView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
         
     }
-    
-    }
-
+}
